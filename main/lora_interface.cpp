@@ -126,8 +126,8 @@ static void handle_receive(int size) {
         }
         case DIRECTED_MESSAGE: {
             // not repeated message
-            if (last_messages.find(packet.header.sender_id) == last_messages.end() ||
-                last_messages[packet.header.sender_id] <= packet.header.message_id) {
+            // if (last_messages.find(packet.header.sender_id) == last_messages.end() ||
+            //     last_messages[packet.header.sender_id] <= packet.header.message_id) {
                 last_messages[packet.header.sender_id] = packet.header.message_id;
                 if (((directed_packet_t*)&packet)->receiver_id == get_device_id()) {
                     // we are the receiver so store it
@@ -136,8 +136,8 @@ static void handle_receive(int size) {
                     // we are not the receiver so pass it on
                     add_send_message(&packet);
                 }
-            } else {
-            }
+            // } else {
+            // }
             break;
         }
     }

@@ -3,11 +3,13 @@
 #include "esp_random.h"
 #include "lora_interface.h"
 #include "freertos/task.h"
-#include "serial.h"
 
-void serial_task(void*) {
-    handle_serial();
-}
+// Adrian work
+#include "sender.h"
+#include "receiver.h"
+
+#define SEND_ID 37
+#define REC_ID  47
 
 extern "C" void app_main() {
     esp_log_level_set("*", ESP_LOG_NONE);
@@ -17,10 +19,11 @@ extern "C" void app_main() {
         return;
     }
     srand(esp_random());
-    TaskHandle_t task_handle;
-    BaseType_t task_code = xTaskCreatePinnedToCore(serial_task, "handle serial", 8196, NULL, 3, &task_handle, 0);
-    while(1) {
-        vTaskDelay(1);
-    }
-    // sender();
+    // sender code
+    // set_device_id(SEND_ID);
+    // sender(REC_ID);
+
+    // receiver code
+    set_device_id(REC_ID);
+    receiver();
 }
