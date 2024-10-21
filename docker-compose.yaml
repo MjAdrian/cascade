@@ -19,6 +19,6 @@ services:
     environment:
       - HOME=/tmp
     working_dir: /app/
-    command: idf.py flash -p /dev/ttyACM0
+    command: idf.py flash -p /dev/ttyACM1
     devices:
-     - "/dev/ttyACM0:/dev/ttyACM0"
+     - "/dev/ttyACM1:/dev/ttyACM1"

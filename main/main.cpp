@@ -18,12 +18,17 @@ extern "C" void app_main() {
         ESP_LOGE("sx127x", "ERROR: Cannot initialize lora");
         return;
     }
+    LoRa.setTxPower(20,1);
+    LoRa.setSignalBandwidth(125E3);
+    LoRa.setSpreadingFactor(9);
+    LoRa.setCodingRate4(8);
+
     srand(esp_random());
     // sender code
-    // set_device_id(SEND_ID);
-    // sender(REC_ID);
+    set_device_id(SEND_ID);
+    sender(REC_ID);
 
     // receiver code
-    set_device_id(REC_ID);
-    receiver();
+    // set_device_id(REC_ID);
+    // receiver();
 }
